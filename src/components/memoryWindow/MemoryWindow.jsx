@@ -9,20 +9,22 @@ function MemoryWindow() {
         <h2 className={styles.Window__title}>CPU & Memory</h2>
       </div>
 
-      <div className={styles.Registers__wrapper}>
-        <div className={styles.Section__title__wrapper}>
-          <h3 className={styles.Section__title}>Registers</h3>
+      <div className={styles.Content}>
+        <div className={styles.Registers__wrapper}>
+          <div className={styles.Section__title__wrapper}>
+            <h3 className={styles.Section__title}>Registers</h3>
+          </div>
+
+          <Registers className={styles.Registers}/>
         </div>
 
-        <Registers className={styles.Registers}/>
-      </div>
+        <div className={styles.Ram__wrapper}>
+          <div className={styles.Section__title__wrapper}>
+            <h3 className={styles.Section__title}>RAM</h3>
+          </div>
 
-      <div className={styles.Ram__wrapper}>
-        <div className={styles.Section__title__wrapper}>
-          <h3 className={styles.Section__title}>RAM</h3>
+          <Ram className={styles.Ram}/>
         </div>
-
-        <Ram className={styles.Ram}/>
       </div>
     </div>
   );

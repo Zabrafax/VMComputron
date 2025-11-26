@@ -13,7 +13,7 @@
 
 .Main__content__wrapper {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 43px);
 
     padding: var(--gap-between-windows);
 
@@ -57,6 +57,7 @@
 
 .Memory__wrapper {
     width: 35%;
+    min-width: fit-content;
     height: 100%;
 
     /*background-color: darkgoldenrod;*/
