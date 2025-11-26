@@ -1,5 +1,6 @@
 import styles from './App.module.css';
 import Header from "./components/Header.jsx";
+import MemoryWindow from "./components/memoryWindow/MemoryWindow.jsx";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <div className={styles.Console__wrapper}>Console wrapper</div>
         </div>
         <div className={styles.Memory__wrapper}>
-          Memory wrapper
+          <MemoryWindow />
         </div>
       </div>
     </div>

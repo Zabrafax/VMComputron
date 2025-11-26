@@ -1,0 +1,152 @@
+.RegistersBoard {
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.RegistersBoard:last-child .Registers__wrapper {
+    border-radius: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.Registers__wrapper {
+    width: 100%;
+    height: fit-content;
+
+    padding: 0.1875rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.1875rem;
+
+    border-radius: 0 0.5rem 0.5rem 0;
+    border: 2px solid var(--color--border-default-secondary);
+}
+
+.Register {
+    width: 1.25rem;
+    height: 1.25rem;
+
+    outline: none;
+    border: none;
+    border-radius: 0.25rem;
+
+    cursor: pointer;
+}
+
+.Green {
+    background-color: var(--color--background-green);
+    box-shadow: 0 0 0 2px var(--color--border-green) inset;
+}
+
+.Orange {
+    background-color: var(--color--background-orange);
+    box-shadow: 0 0 0 2px var(--color--border-orange) inset;
+}
+
+.Red {
+    background-color: var(--color--background-red);
+    box-shadow: 0 0 0 2px var(--color--border-red) inset;
+}
+
+.Blue {
+    background-color: var(--color--background-blue);
+    box-shadow: 0 0 0 2px var(--color--border-blue) inset;
+}
+
+.Green.Active {
+    background: radial-gradient(
+            circle,
+            rgba(175, 244, 198, 1) 0%,
+            rgba(20, 174, 92, 1) 100%
+    );
+}
+
+.Orange.Active {
+    background: radial-gradient(
+            circle,
+            rgba(255, 232, 163, 1) 0%,
+            rgba(232, 185, 49, 1) 100%
+    );
+}
+
+.Red.Active {
+    background: radial-gradient(
+            circle,
+            #FCB3AD 0%,
+            #EC221F 100%
+    );
+}
+
+.Blue.Active {
+    background: radial-gradient(
+            circle,
+            #B8ADFC 0%,
+            #481FEC 100%
+    );
+}
+
+.Counter {
+    width: 6.25rem;
+    height: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    border-radius: 0 0 0.25rem 0.25rem;
+    background-color: var(--color--border-default-secondary);
+}
+
+.Counter__title__wrapper {
+    width: 50%;
+    height: 100%;
+
+    padding: 0 0.25rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.Counter__title {
+    font-size: 0.625rem;
+    font-weight: 400;
+
+    margin-bottom: 0.0625rem;
+
+    color: var(--color--text-brand-onbrand);
+}
+
+.Counter__window {
+    width: 50%;
+    height: 1rem;
+
+    padding: 0 0.25rem;
+
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    border-radius: 0 0 0.25rem 0;
+    background-color: var(--color--background-warning-tertiary);
+
+    border-right: 2px solid var(--color--border-default-secondary);
+    border-bottom: 2px solid var(--color--border-default-secondary);
+}
+
+.Counter__number {
+    font-size: 0.75rem;
+    font-weight: 400;
+}
