@@ -1,8 +1,21 @@
 import styles from './App.module.css';
 import Header from "./components/Header.jsx";
 import MemoryWindow from "./components/memoryWindow/MemoryWindow.jsx";
+import ConsoleWindow from "./components/consoleWindow/ConsoleWindow.jsx";
 
 function App() {
+
+  const messages = [
+    "Program started.",
+    "Loading modules...",
+    "Modules loaded successfully.",
+    "Executing main function...",
+    "Error: Unable to fetch data from server.",
+    "Retrying connection...",
+    "Connection established.",
+    "Program terminated."
+  ];
+
   return (
     <div className={styles.App__wrapper}>
       <Header />
@@ -10,7 +23,9 @@ function App() {
       <div className={styles.Main__content__wrapper}>
         <div className={styles.Left__content__wrapper}>
           <div className={styles.Code__wrapper}>Code wrapper</div>
-          <div className={styles.Console__wrapper}>Console wrapper</div>
+          <div className={styles.Console__wrapper}>
+            <ConsoleWindow msgs={messages}/>
+          </div>
         </div>
         <div className={styles.Memory__wrapper}>
           <MemoryWindow />

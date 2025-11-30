@@ -43,16 +43,16 @@
 
 .Code__wrapper {
     width: 100%;
-    height: 70%;
+    height: 100%;
 
     background-color: burlywood;
 }
 
 .Console__wrapper {
     width: 100%;
-    height: 30%;
+    height: fit-content;
 
-    background-color: khaki;
+    /* background-color: khaki; */
 }
 
 .Memory__wrapper {
