@@ -4,7 +4,7 @@ import InstructionsInput from "./InstructionsInput.jsx";
 import {useState} from "react";
 
 
-const Editor = () => {
+const Editor = ({ setEditorFilter }) => {
     const [tabs, setTabs] = useState([{ id: 1, name: "Tab 1", content: "" }]);
     const [activeTabId, setActiveTabId] = useState(1);
     const activeTab = tabs.find(t => t.id === activeTabId);
@@ -18,7 +18,7 @@ const Editor = () => {
     return (
         <div className={styles.EditorContainer}>
             <Tabs tabs={tabs} setTabs={setTabs} activeTabId={activeTabId} setActiveTabId={setActiveTabId}/>
-            <InstructionsInput activeTab={activeTab} onChange={updateTabContent}/>
+            <InstructionsInput activeTab={activeTab} onChange={updateTabContent} onType={setEditorFilter}/>
         </div>
     );
 }

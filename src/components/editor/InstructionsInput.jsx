@@ -1,12 +1,13 @@
 import styles from './InstructionsInput.module.css';
 
-const InstructionsInput = ({ activeTab, onChange }) => {
+const InstructionsInput = ({ activeTab, onChange, onType }) => {
     if (!activeTab) return null;
 
     const lines = activeTab.content ? activeTab.content.split('\n') : [''];
 
     const handleChange = (e) => {
         onChange(e.target.value);
+        onType(e.target.value);
     }
 
     return (
