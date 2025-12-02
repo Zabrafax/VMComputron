@@ -4,6 +4,7 @@ import MemoryWindow from "./components/memoryWindow/MemoryWindow.jsx";
 import ConsoleWindow from "./components/consoleWindow/ConsoleWindow.jsx";
 import InstructionsWindow from './components/instructionsWindow/InstructionsWindow.jsx';
 import "simplebar-react/dist/simplebar.min.css";
+import Editor from "./components/editor/Editor.jsx";
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
         <div className={styles.Left__content__wrapper}>
           <div className={styles.Code__wrapper}>
             <div className={styles.Code__display__wrapper}>
-              Code Display
+                <Editor />
             </div>
             <InstructionsWindow />
           </div>
