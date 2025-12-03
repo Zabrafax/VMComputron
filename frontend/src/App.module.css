@@ -44,7 +44,8 @@
 
 .Code__wrapper {
     width: 100%;
-    height: 100%;
+    flex: 1;
+    min-height: 0;
 
     display: flex;
     flex-direction: row;
@@ -92,17 +93,6 @@
         width: 100%;
         flex: 1;
         min-height: 0;
-    }
-
-    .Code__wrapper {
-        width: 100%;
-        flex: 1;
-        min-height: 0;
-    }
-
-    .Code__display__wrapper {
-        width: 100%;
-        height: 100%;
     }
 
     .Memory__wrapper {
