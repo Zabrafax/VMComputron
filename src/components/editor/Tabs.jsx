@@ -1,9 +1,10 @@
 import styles from './Tabs.module.css';
 import {FiPlus, FiPlay, FiSkipBack, FiSkipForward, FiRotateCw} from 'react-icons/fi';
+import { v4 as uuidv4 } from 'uuid';
 
 const Tabs = ({ tabs, setTabs, activeTabId,setActiveTabId}) => {
     const addTab = () => {
-        const newId = Date.now();
+        const newId = uuidv4();
         setTabs([...tabs, { id: newId, name: `Tab ${tabs.length + 1}`, content: "" }]);
         setActiveTabId(newId);
     };
