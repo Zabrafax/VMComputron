@@ -1,13 +1,28 @@
 import styles from './InstructionsInput.module.css';
+import { useMemo, useEffect } from 'react';
+import debounce from 'lodash.debounce';
 
 const InstructionsInput = ({ activeTab, onChange, onType }) => {
     if (!activeTab) return null;
 
     const lines = activeTab.content ? activeTab.content.split('\n') : [''];
 
+    // Debounce the onType callback to avoid performance issues
+    const debouncedOnType = useMemo(
+        () => debounce(onType, 300),
+        [onType]
+    );
+
+    useEffect(() => {
+        // Cleanup debounced function on unmount
+        return () => {
+            debouncedOnType.cancel();
+        };
+    }, [debouncedOnType]);
+
     const handleChange = (e) => {
         onChange(e.target.value);
-        onType(e.target.value);
+        debouncedOnType(e.target.value);
     }
 
     return (
