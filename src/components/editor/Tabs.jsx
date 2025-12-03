@@ -11,8 +11,8 @@ const Tabs = ({ tabs, setTabs, activeTabId,setActiveTabId}) => {
     const closeTab = (id) => {
         const filtered = tabs.filter(t => t.id !== id);
         setTabs(filtered);
-        if (activeTabId === id && filtered.length > 0) {
-            setActiveTabId(filtered[0].id);
+        if (activeTabId === id) {
+            setActiveTabId(filtered.length > 0 ? filtered[0].id : null);
         }
     };
 
@@ -24,11 +24,11 @@ const Tabs = ({ tabs, setTabs, activeTabId,setActiveTabId}) => {
                         {tabs.map((tab, index) => (
                             <button
                                 key={tab.id}
-                                className={`${styles.TabButton} ${tab.id === activeTabId ? styles.TabActive : styles.TabInactive} ${index === tabs.length - 1 ? styles.TabInactiveLast : ''}`}
+                                className={`${styles.TabButton} ${tab.id === activeTabId ? styles.TabActive : styles.TabInactive}`}
                                 onClick={() => setActiveTabId(tab.id)}
                             >
                                 {tab.name}
-                                <span className={styles.TabClose} onClick={() => closeTab(tab.id)}>×</span>
+                                <span className={styles.TabClose} onClick={(e) => { e.stopPropagation(); closeTab(tab.id); }}>×</span>
                             </button>
                         ))}
                     </div>
@@ -40,22 +40,26 @@ const Tabs = ({ tabs, setTabs, activeTabId,setActiveTabId}) => {
                 <div className={styles.TabsControls}>
                     <button
                         // onClick={() => onRun?.(activeTab?.content)}
-                        className={styles.ControlButton}>
+                        className={styles.ControlButton}
+                        aria-label="Reset">
                         <FiRotateCw />
                     </button>
                     <button
                         // onClick={() => onRun?.(activeTab?.content)}
-                        className={styles.ControlButton}>
+                        className={styles.ControlButton}
+                        aria-label="Step backward">
                         <FiSkipBack />
                     </button>
                     <button
                         // onClick={() => onNavBack?.(activeTab?.content)}
-                        className={styles.ControlButton}>
+                        className={styles.ControlButton}
+                        aria-label="Play">
                         <FiPlay />
                     </button>
                     <button
                         // onClick={() => onNavForward?.(activeTab?.content)}
-                        className={styles.ControlButton}>
+                        className={styles.ControlButton}
+                        aria-label="Step forward">
                         <FiSkipForward />
                     </button>
                 </div>
