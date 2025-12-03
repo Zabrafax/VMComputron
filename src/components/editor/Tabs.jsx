@@ -24,6 +24,9 @@ const Tabs = ({ tabs, setTabs, activeTabId,setActiveTabId}) => {
                         {tabs.map((tab, index) => (
                             <button
                                 key={tab.id}
+                                role="tab"
+                                aria-selected={tab.id === activeTabId}
+                                aria-controls={`tabpanel-${tab.id}`}
                                 className={`${styles.TabButton} ${tab.id === activeTabId ? styles.TabActive : styles.TabInactive}`}
                                 onClick={() => setActiveTabId(tab.id)}
                             >
