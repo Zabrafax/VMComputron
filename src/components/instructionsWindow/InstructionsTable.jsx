@@ -62,8 +62,8 @@ function InstructionsTable({search='', editorFilter = ''}) {
         { code: "067", instr: "NEGR", attr: "adr" },
     ];
 
-    const query1 = search.trim().toLowerCase();
-    const query2 = editorFilter.trim().toLowerCase();
+    const searchQuery = search.trim().toLowerCase();
+    const editorFilterQuery  = editorFilter.trim().toLowerCase();
 
     const matches = (row, q) =>
         row.code.toLowerCase().startsWith(q) ||
@@ -72,7 +72,7 @@ function InstructionsTable({search='', editorFilter = ''}) {
 
 
     const filtered = INSTRUCTIONS.filter(row =>
-        matches(row, query1) && matches(row, query2)
+        matches(row, searchQuery) && matches(row, editorFilterQuery)
     );
 
 
