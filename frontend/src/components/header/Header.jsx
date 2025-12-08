@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './Header.module.css';
+import { ThemeContext } from '../../contexts/theme-context';
 
 function Header() {
   const [openMenu, setOpenMenu] = useState(null);
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const toggleMenu = (menuName) => {
     setOpenMenu(openMenu === menuName ? null : menuName);
@@ -43,7 +46,8 @@ function Header() {
         alert('Preferences: Configure IDE settings');
         break;
       case 'theme':
-        alert('Theme: Change color scheme');
+        toggleTheme();
+        // alert('Theme: Change color scheme');
         break;
       case 'vmConfig':
         alert('VM Configuration: Set memory size, clock speed');
@@ -156,7 +160,7 @@ function Header() {
                 Preferences
               </button>
               <button onClick={() => handleSettingsAction('theme')}>
-                Theme
+                Theme: {theme}
               </button>
               <div className={styles.divider}></div>
               <button onClick={() => handleSettingsAction('vmConfig')}>
