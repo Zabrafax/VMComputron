@@ -1,13 +1,13 @@
 
 .Table__outer {
     border-radius: 0 0 8px 8px;
-    border-right: 1px solid var(--color--border-default-secondary);
-    border-bottom: 1px solid var(--color--border-default-secondary);
-    background-color: var(--color--background-default-default);
+    border-right: 1px solid var(--color--default-border);
+    border-bottom: 1px solid var(--color--default-border);
 
     overflow: hidden;
 
     flex: 1 1 0;
+    background: var(--color--window-background);
 }
 
 
@@ -28,13 +28,13 @@
     top: 0;
     z-index: 2;
 
-    color: var(--sds-color-text-neutral-on-neutral);
+    color: var(--color--secondary-text);
     font-size: 0.625rem;
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
 
-    background: var(--sds-color-background-neutral-default);
+    background: var(--color--background-table-header);
 }
 
 
@@ -50,5 +50,9 @@
 }
 
 .Table__row__dark {
-    background-color: var(--sds-color-background-default-secondary);
+    background-color: var(--color--background-dark-row);
+}
+
+.Table__row__light {
+    background-color: var(--color--background-light-row);
 }

@@ -25,7 +25,7 @@
     gap: 0.1875rem;
 
     border-radius: 0 0.25rem 0.25rem 0;
-    border: 1px solid var(--color--border-default-secondary);
+    border: 1px solid var(--color--default-border);
 }
 
 .Register {
@@ -40,23 +40,23 @@
 }
 
 .Green {
-    background-color: var(--color--background-green);
-    box-shadow: 0 0 0 2px var(--color--border-green) inset;
+    background-color: var(--color--background-green-register);
+    box-shadow: 0 0 0 2px var(--color--border-green-register) inset;
 }
 
 .Orange {
-    background-color: var(--color--background-orange);
-    box-shadow: 0 0 0 2px var(--color--border-orange) inset;
+    background-color: var(--color--background-orange-register);
+    box-shadow: 0 0 0 2px var(--color--border-orange-register) inset;
 }
 
 .Red {
-    background-color: var(--color--background-red);
-    box-shadow: 0 0 0 2px var(--color--border-red) inset;
+    background-color: var(--color--background-red-register);
+    box-shadow: 0 0 0 2px var(--color--border-red-register) inset;
 }
 
 .Blue {
-    background-color: var(--color--background-blue);
-    box-shadow: 0 0 0 2px var(--color--border-blue) inset;
+    background-color: var(--color--background-blue-register);
+    box-shadow: 0 0 0 2px var(--color--border-blue-register) inset;
 }
 
 .Green.Active {
@@ -102,7 +102,7 @@
     flex-wrap: nowrap;
 
     border-radius: 0 0 0.25rem 0.25rem;
-    background-color: var(--color--border-default-secondary);
+    background-color: var(--color--default-border);
 }
 
 .Counter__title__wrapper {
@@ -124,7 +124,7 @@
 
     margin-bottom: 0.0625rem;
 
-    color: var(--color--text-brand-onbrand);
+    color: var(--color--secondary-text);
 }
 
 .Counter__window {
@@ -140,10 +140,10 @@
     flex-wrap: nowrap;
 
     border-radius: 0 0 0.25rem 0;
-    background-color: var(--color--background-warning-tertiary);
+    background-color: var(--color--background-register-counter);
 
-    border-right: 1px solid var(--color--border-default-secondary);
-    border-bottom: 1px solid var(--color--border-default-secondary);
+    border-right: 1px solid var(--color--default-border);
+    border-bottom: 1px solid var(--color--default-border);
 }
 
 .Counter__number {

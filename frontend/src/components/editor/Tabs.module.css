@@ -50,11 +50,11 @@
     width: 5rem;
     height: 2rem;
     border-radius: 0.5rem 0.5rem 0 0;
-    background-color: var(--color--background-default-default);
-    border-top: 1px solid var(--color--border-default-secondary);
-    border-right: 1px solid var(--color--border-default-secondary);
-    border-left: 1px solid var(--color--border-default-secondary);
-    color: var(--color--text-color);
+    background-color: var(--color--background-active-button);
+    border-top: 1px solid var(--color--default-border);
+    border-right: 1px solid var(--color--default-border);
+    border-left: 1px solid var(--color--default-border);
+    color: var(--color--default-text);
 }
 
 .TabInactive:first-child {
@@ -69,14 +69,14 @@
     width: 4rem;
     height: 1.5rem;
     border-radius: 0;
-    background-color: var(--color--background-color-brand-default);
-    color: var(--color--text-brand-onbrand);
+    background-color: var(--color--button--background);
+    color: var(--color--secondary-text);
     font-family: inherit;
     cursor: pointer;
 }
 
 .TabInactive:hover {
-    background-color: var(--color--background-hover-dark-button);
+    background-color: var(--color--background-hover-button);
 }
 
 .TabClose {
@@ -98,14 +98,14 @@
     border: none;
     border-radius: 0.5rem 0.5rem 0 0;
     margin-left: 0.5rem;
-    background-color: var(--color--background-color-brand-default);
-    color: var(--color--text-brand-onbrand);
+    background-color: var(--color--button--background);
+    color: var(--color--secondary-text);
     font-family: inherit;
     cursor: pointer;
 }
 
 .TabAddButton:hover {
-    background-color: var(--color--background-hover-dark-button);
+    background-color: var(--color--background-hover-button);
 }
 
 .TabsControls {
@@ -128,20 +128,21 @@
     flex-wrap: nowrap;
     outline: none;
     border: none;
-    border-top: 1px solid var(--color--border-default-secondary);
-    color: var(--color--text-color);
+    border-top: 1px solid var(--color--default-border);
+    color: var(--color--default-text);
+    background-color: var(--color--main-background);
     font-family: inherit;
     cursor: pointer;
 }
 
 .ControlButton:last-child {
     border-radius: 0 0.5rem 0 0;
-    border-right: 1px solid var(--color--border-default-secondary);
+    border-right: 1px solid var(--color--default-border);
 }
 
 .ControlButton:first-child {
     border-radius: 0.5rem 0 0 0;
-    border-left: 1px solid var(--color--border-default-secondary);
+    border-left: 1px solid var(--color--default-border);
 }
 
 .TabContent {

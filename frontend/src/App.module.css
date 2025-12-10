@@ -24,7 +24,7 @@
     flex-wrap: nowrap;
     gap: var(--gap-between-windows);
 
-    background-color: var(--color--background-default-tertiary);
+    background-color: var(--color--main-background);
 }
 
 .Left__content__wrapper {
