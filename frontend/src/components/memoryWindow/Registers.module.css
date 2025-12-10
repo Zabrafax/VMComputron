@@ -48,13 +48,13 @@
     height: 1.875rem;
 
     border-radius: 0.5rem 0.5rem 0 0;
-    background-color: var(--color--background-default-default);
+    background-color: var(--color--window-background);
 
-    border-top: 1px solid var(--color--border-default-secondary);
-    border-right: 1px solid var(--color--border-default-secondary);
-    border-left: 1px solid var(--color--border-default-secondary);
+    border-top: 1px solid var(--color--default-border);
+    border-right: 1px solid var(--color--default-border);
+    border-left: 1px solid var(--color--default-border);
 
-    color: var(--color--text-color);
+    color: var(--color--default-text);
 }
 
 .Inactive__option:last-child {
@@ -70,9 +70,9 @@
     height: 1.375rem;
 
     border-radius: 0;
-    background-color: var(--color--background-color-brand-default);
+    background-color: var(--color--button--background);
 
-    color: var(--color--text-brand-onbrand);
+    color: var(--color--secondary-text);
 
     font-family: inherit;
 
@@ -80,7 +80,7 @@
 }
 
 .Inactive__option:hover {
-    background-color: var(--color--background-hover-dark-button);
+    background-color: var(--color--background-hover-button);
 }
 
 .Register__option__title {
@@ -117,13 +117,15 @@
     outline: none;
     border: none;
     border-radius: 0.5rem;
-    background-color: var(--color--background-color-brand-default);
+    background-color: var(--color--button--background);
 
-    color: var(--color--text-brand-onbrand);
+    color: var(--color--secondary-text);
 
     font-family: inherit;
 
     cursor: pointer;
+
+    stroke: var(--color--secondary-text);
 }
 
 .File__button__title {
@@ -134,7 +136,7 @@
 }
 
 .File__button:hover {
-    background-color: var(--color--background-hover-dark-button);
+    background-color: var(--color--background-hover-button);
 }
 
 .Registers__board {

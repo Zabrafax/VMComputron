@@ -9,7 +9,6 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -21,49 +20,122 @@
   --gap-between-windows: 10px;
   --min-app-height: 680px;
 
-  --color--background-default-tertiary: #D9D9D9;
-  --color--background-default-default: #FFFFFF;
-  --color--border-default-secondary: #757575;
-  --color--background-color-brand-default: #2C2C2C;
-  --color--background-hover-dark-button: #0e0e0e;
-  --color--background-warning-tertiary: rgba(255, 251, 235, 1);
-
-  --color--background-green: #2C5533;
-  --color--border-green: #009951;
-  --color--background-orange: #524223;
-  --color--border-orange: #975102;
-  --color--background-red: #602E2EFF;
-  --color--border-red: #C00F0C;
-  --color--background-blue: #322C56;
-  --color--border-blue: #330CC0;
-
-  --color--text-color: #000000;
-  --color--text-brand-onbrand: #F5F5F5;
-  --color--text-default-secondary: #757575;
-
-
   --sds-size-stroke-border: 1px;
+
+
+  /* Button colors */
+  --color--button--background: var(--color--brand-default);
+  --color--background-hover-button: #0e0e0e;
+  --color--background-disabled-button: var(--color--default-tertiary);
+
+  --color--button--disabled-border: var(--color--disabled-default);
+
+  --color--background-active-button: var(--color--default-default);
+
+
+  /* Header colors */
+  --color--header--background: var(--color--brand-default);
+  --color--header--background-dropdown-hover: var(--color--default-tertiary);
+  --color--header--background-dropdown: var(--color--default-default);
+
+  --color--header--background-button-hover: #0e0e0e;
+
+
+  /* Instructions table colors */
+  --color--background-light-row: var(--color--default-default);
+  --color--background-dark-row: var(--color--brand-on-brand);
+  --color--background-search-input: var(--color--default-default);
+  --color--background-table-header: var(--color--neutral-default);
+
+
+  /* Main colors */
+  --color--main-background: var(--color--default-tertiary);
+  --color--window-background: var(--color--default-default);
+  --color--default-border: var(--color--default-secondary);
   
-  --sds-color-background-disabled-default: #D9D9D9;
-  --sds-color-border-disabled-default: #B3B3B3;
-  --sds-color-icon-disabled-on-disabled: #B3B3B3;
 
-  --sds-color-background-brand-default: #2C2C2C;
-  --sds-color-border-brand-default: #2C2C2C;
-  --sds-color-icon-brand-on-brand: #F5F5F5;
+  /* Text colors */
+  --color--default-text: #000000;
+  --color--secondary-text: #F5F5F5;
 
 
-  --sds-color-background-neutral-default: #5A5A5A;
-  --sds-color-text-neutral-on-neutral: #F3F3F3;
-  --sds-color-background-default-secondary: #F5F5F5;
+  /* Memory window */
+  --color--memory-section-title: var(--color--default-secondary);
+
+  --color--background-register-counter: var(--color--warning-tertiary);
+
+  --color--background-green-register: #2C5533;
+  --color--border-green-register: #009951;
+  --color--background-orange-register: #524223;
+  --color--border-orange-register: #975102;
+  --color--background-red-register: #602E2EFF;
+  --color--border-red-register: #C00F0C;
+  --color--background-blue-register: #322C56;
+  --color--border-blue-register: #330CC0;
+
+
+
+  
+  /* Colors variables */
+  --color--default-tertiary: #D9D9D9;
+  --color--default-default: #FFFFFF;
+  --color--default-secondary: #757575;
+  --color--brand-default: #2C2C2C;
+  --color--warning-tertiary: #fffbeb;
+  
+  --color--brand-on-brand: #F5F5F5;
+  --color--disabled-default: #B3B3B3;
+  --color--neutral-default: #5A5A5A;
+  --color--neutral-on-neutral: #F3F3F3;
+}
+
+:root[data-theme='dark'] {
+  /* Hover */
+  --color--background-hover-button: #1a1a1a;
+  
+  /* Text */
+  --color--default-text: #F5F5F5;
+  --color--secondary-text: #f5f5f5;
+  
+  /* Register backgrounds */
+  --color--background-green-register: #1E3A28;
+  --color--border-green-register: #3CB371;
+  
+  --color--background-orange-register: #3A2F1A;
+  --color--border-orange-register: #C97A1C;
+  
+  --color--background-red-register: #3A1F1F;
+  --color--border-red-register: #E04B4B;
+  
+  --color--background-blue-register: #232046;
+  --color--border-blue-register: #6A5CFF;
+  
+  /* Base system colors */
+  --color--default-tertiary: #1F1F1F;
+  --color--default-default: #121212;
+  --color--default-secondary: #9E9E9E;
+  
+  --color--brand-default: #282828;
+  --color--brand-on-brand: #F5F5F5;
+  
+  --color--warning-tertiary: #2A2415;
+  
+  /* Neutral & disabled */
+  --color--disabled-default: #5C5C5C;
+  --color--neutral-default: #2B2B2B;
+  --color--neutral-on-neutral: #E0E0E0;
+
+  --color--background-light-row: var(--color--default-default);
+  --color--background-dark-row: #161616;
 }
 
 #root {
   width: 100%;
   height: 100%;
 
-  color: var(--color--text-color);
+  color: var(--color--default-text);
 }
+
 
 a {
   font-weight: 500;
@@ -87,13 +159,21 @@ body {
   margin-top: 20px;
 }
 
+.table-scroll .simplebar-scrollbar::before {
+  background-color: var(--color--secondary-text) !important;
+}
+
 .console-scroll .simplebar-track.simplebar-vertical {
-  width: 6px; 
+  width: 6px;
+}
+
+.console-scroll .simplebar-scrollbar::before {
+  background-color: var(--color--secondary-text) !important;
 }
 
 
 .sb-scroll .simplebar-scrollbar::before {
-  background: var(--sds-color-background-neutral-default);
+  background: var(--color--neutral-default);
   border-radius: 8px;
 }
 

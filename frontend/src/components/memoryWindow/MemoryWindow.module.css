@@ -14,12 +14,12 @@
     flex-wrap: nowrap;
 
     border-radius: 0.5rem;
-    background-color: var(--color--background-default-default);
-    border-right: 1px solid var(--color--border-default-secondary);
-    border-bottom: 1px solid var(--color--border-default-secondary);
+    background-color: var(--color--window-background);
+    border-right: 1px solid var(--color--default-border);
+    border-bottom: 1px solid var(--color--default-border);
 
 
-    color: var(--color--text-color);
+    color: var(--color--default-text);
 }
 
 .Header {
@@ -35,7 +35,7 @@
     align-items: center;
     gap: 0.375rem;
 
-    border-bottom: 1px solid var(--color--border-default-secondary);
+    border-bottom: 1px solid var(--color--default-border);
 }
 
 .Hide__button {
@@ -93,7 +93,7 @@
     font-size: 1rem;
     font-weight: 400;
 
-    color: var(--color--text-default-secondary);
+    color: var(--color--memory-section-title);
 }
 
 

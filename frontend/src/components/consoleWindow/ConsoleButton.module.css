@@ -9,19 +9,20 @@
     align-items: center;
 
     border-radius: 0.25rem;
-    stroke: var(--sds-color-icon-brand-on-brand);
-    border: var(--sds-size-stroke-border) solid var(--sds-color-border-brand-default);
-    background: var(--sds-color-background-brand-default);
+    stroke: var(--color--secondary-text);
+    border: var(--sds-size-stroke-border) solid var(--color--button--background);
+    background: var(--color--button--background);
 }
 
 .ConsoleButton:hover {
-    background-color: var(--color--background-hover-dark-button);
+    background-color: var(--color--background-hover-button);
+    border: var(--sds-size-stroke-border) solid var(--color--background-hover-button);
 }
 
 .ConsoleButton.Disabled {
     cursor: default;
 
-    stroke: var(--sds-color-icon-disabled-on-disabled);
-    border: var(--sds-size-stroke-border) solid var(--sds-color-border-disabled-default);
-    background: var(--sds-color-background-disabled-default);
+    stroke: var(--color--button--disabled-border);
+    border: var(--sds-size-stroke-border) solid var(--color--button--disabled-border);
+    background: var(--color--background-disabled-button);
 }
