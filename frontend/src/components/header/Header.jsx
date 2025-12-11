@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import styles from './Header.module.css';
 import { ThemeContext } from '../../contexts/theme-context';
-import Sun from './icons/sun';
-import Moon from './icons/Moon';
+import Sun from './icons/Sun.jsx';
+import Moon from './icons/Moon.jsx';
 
 function Header() {
   const [openMenu, setOpenMenu] = useState(null);

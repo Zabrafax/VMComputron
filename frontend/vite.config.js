@@ -1,7 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+  proxy: {
+    '/api': 'http://localhost:8080',
+    '/ws': {
+      target: 'http://localhost:8080',
+      ws: true,  // важно для WebSocket
+    },},
+
+  build: {
+    outDir: 'dist',  // Убедитесь, что выходная папка - dist
+    emptyOutDir: true
+  }
+});
