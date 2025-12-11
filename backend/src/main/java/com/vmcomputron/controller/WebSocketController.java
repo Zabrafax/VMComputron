@@ -35,13 +35,35 @@ public class WebSocketController { // websocket
 
     @MessageMapping("/registerUpdated")
     @SendTo("/topic/registers")
-    public CvmRegisters handleRegisterUpdate(@Payload RegisterUpdateRequest request) {
+    public void handleRegisterUpdate(@Payload RegisterUpdateRequest request) {
 
-        // Обновляем регистр
         CvmRegisters.updateRegister(request.register(), request.newValue());
 
-        // Возвращаем текущее состояние всех регистров
-        return CvmRegisters.getCurrentState();
+        switch (request.register()) {
+            case "PC":
+                messagingTemplate.convertAndSend("/topic/register/PC", Register.pc(CvmRegisters.getPC()));
+                break;
+            case "SP":
+                messagingTemplate.convertAndSend("/topic/register/SP", Register.sp(CvmRegisters.getSP()));
+                break;
+            case "A":
+                messagingTemplate.convertAndSend("/topic/register/A", Register.a(CvmRegisters.getA()));
+                break;
+            case "X":
+                messagingTemplate.convertAndSend("/topic/register/X", Register.x(CvmRegisters.getX()));
+                break;
+            case "RH":
+                messagingTemplate.convertAndSend("/topic/register/RH", Register.rh(CvmRegisters.getRH()));
+                break;
+            case "RL":
+                messagingTemplate.convertAndSend("/topic/register/RL", Register.rl(CvmRegisters.getRL()));
+                break;
+            case "R":
+                messagingTemplate.convertAndSend("/topic/register/R", Register.r(CvmRegisters.getR()));
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown register: " + request.register());
+        }
     }
 
     //    client.publish({
@@ -63,17 +85,17 @@ public class WebSocketController { // websocket
 //    });
 
 
-    @Scheduled(fixedRate = 500)  // можно 100, 200, 1000 — как хочешь
-    public void broadcastRegistersPeriodically() {
-        // Отправляем каждый регистр в свой топик
-        messagingTemplate.convertAndSend("/topic/register/PC",  Register.pc(CvmRegisters.getPC()));
-        messagingTemplate.convertAndSend("/topic/register/SP",  Register.sp(CvmRegisters.getSP()));
-        messagingTemplate.convertAndSend("/topic/register/A",   Register.a(CvmRegisters.getA()));
-        messagingTemplate.convertAndSend("/topic/register/X",   Register.x(CvmRegisters.getX()));
-        messagingTemplate.convertAndSend("/topic/register/RH",  Register.rh(CvmRegisters.getRH()));
-        messagingTemplate.convertAndSend("/topic/register/RL",  Register.rl(CvmRegisters.getRL()));
-        messagingTemplate.convertAndSend("/topic/register/R",   Register.r(CvmRegisters.getR()));
-    }
+//    @Scheduled(fixedRate = 2000)  // можно 100, 200, 1000 — как хочешь
+//    public void broadcastRegistersPeriodically() {
+//        // Отправляем каждый регистр в свой топик
+//        messagingTemplate.convertAndSend("/topic/register/PC",  Register.pc(CvmRegisters.getPC()));
+//        messagingTemplate.convertAndSend("/topic/register/SP",  Register.sp(CvmRegisters.getSP()));
+//        messagingTemplate.convertAndSend("/topic/register/A",   Register.a(CvmRegisters.getA()));
+//        messagingTemplate.convertAndSend("/topic/register/X",   Register.x(CvmRegisters.getX()));
+//        messagingTemplate.convertAndSend("/topic/register/RH",  Register.rh(CvmRegisters.getRH()));
+//        messagingTemplate.convertAndSend("/topic/register/RL",  Register.rl(CvmRegisters.getRL()));
+//        messagingTemplate.convertAndSend("/topic/register/R",   Register.r(CvmRegisters.getR()));
+//    }
 //    useEffect(() => {
 //        if (!client.current) return;
 //
