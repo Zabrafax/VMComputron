@@ -2,6 +2,7 @@ package com.vmcomputron.controller;
 
 import com.vmcomputron.cvmPackage.CvmRegisters;
 import com.vmcomputron.model.Greeting;
+import com.vmcomputron.model.Register;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -27,7 +28,8 @@ public class WebSocketController { // websocket
         CvmRegisters.updateRegister(registerName, value);
         return CvmRegisters.getCurrentState();
     }
-//    client.publish({
+
+    //    client.publish({
 //        destination: '/app/registerUpdated',
 //                body: JSON.stringify(42),                    // ← значение
 //                headers: { 'register': 'A' }                 // ← имя регистра
@@ -45,7 +47,61 @@ public class WebSocketController { // websocket
 //    });
 //    });
 
+    @MessageMapping("/request/PC")
+    @SendTo("/topic/register/PC")
+    public Register handleRegisterUpdatePC() {
+        return Register.pc(CvmRegisters.getPC());
+    }
 
+    // === SP ===
+    @MessageMapping("/request/SP")
+    @SendTo("/topic/register/SP")
+    public Register handleRegisterUpdateSP() {
+        return Register.sp(CvmRegisters.getSP());
+    }
+
+    // === A ===
+    @MessageMapping("/request/A")
+    @SendTo("/topic/register/A")
+    public Register handleRegisterUpdateA() {
+        return Register.a(CvmRegisters.getA());
+    }
+
+    // === X ===
+    @MessageMapping("/request/X")
+    @SendTo("/topic/register/X")
+    public Register handleRegisterUpdateX() {
+        return Register.x(CvmRegisters.getX());
+    }
+
+    // === RH ===
+    @MessageMapping("/request/RH")
+    @SendTo("/topic/register/RH")
+    public Register handleRegisterUpdateRH() {
+        return Register.rh(CvmRegisters.getRH());
+    }
+
+    // === RL ===
+    @MessageMapping("/request/RL")
+    @SendTo("/topic/register/RL")
+    public Register handleRegisterUpdateRL() {
+        return Register.rl(CvmRegisters.getRL());
+    }
+
+    // === R (float) — отдельно, потому что значение float ===
+    @MessageMapping("/request/R")
+    @SendTo("/topic/register/R")
+    public Register handleRegisterUpdateR() {
+        return Register.r(CvmRegisters.getR());
+    }
+//    client.publish({ destination: '/app/request/PC' });
+//
+//// Подписаться только на изменения PC
+//    client.subscribe('/topic/register/PC', (msg) => {
+//    const data = JSON.parse(msg.body);
+//        setPc(data.newValue);
+//        setCpuPanel(data.cpu);
+//    });
 
 
 }
