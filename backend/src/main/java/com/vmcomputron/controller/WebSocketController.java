@@ -3,14 +3,27 @@ package com.vmcomputron.controller;
 import com.vmcomputron.cvmPackage.CvmRegisters;
 import com.vmcomputron.model.Greeting;
 import com.vmcomputron.model.Register;
+import com.vmcomputron.model.RegisterUpdateRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class WebSocketController { // websocket
+
+    private final SimpMessagingTemplate messagingTemplate;
+
+    @Autowired
+    public WebSocketController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
+
+
     //если надо чтото новое отправить надо как в дб создать файл поддержку на примере greeting
     // Клиент отправляет на /app/hello → сервер broadcast на /topic/greetings
     @MessageMapping("/hello")
@@ -19,13 +32,15 @@ public class WebSocketController { // websocket
         return new Greeting("Привет от сервера: " + message);
     }
 
+
     @MessageMapping("/registerUpdated")
     @SendTo("/topic/registers")
-    public CvmRegisters handleRegisterUpdate(
-            @Payload Integer value,
-            @Header("register") String registerName) {
+    public CvmRegisters handleRegisterUpdate(@Payload RegisterUpdateRequest request) {
 
-        CvmRegisters.updateRegister(registerName, value);
+        // Обновляем регистр
+        CvmRegisters.updateRegister(request.register(), request.newValue());
+
+        // Возвращаем текущее состояние всех регистров
         return CvmRegisters.getCurrentState();
     }
 
@@ -47,62 +62,46 @@ public class WebSocketController { // websocket
 //    });
 //    });
 
-    @MessageMapping("/request/PC")
-    @SendTo("/topic/register/PC")
-    public Register handleRegisterUpdatePC() {
-        return Register.pc(CvmRegisters.getPC());
-    }
 
-    // === SP ===
-    @MessageMapping("/request/SP")
-    @SendTo("/topic/register/SP")
-    public Register handleRegisterUpdateSP() {
-        return Register.sp(CvmRegisters.getSP());
+    @Scheduled(fixedRate = 500)  // можно 100, 200, 1000 — как хочешь
+    public void broadcastRegistersPeriodically() {
+        // Отправляем каждый регистр в свой топик
+        messagingTemplate.convertAndSend("/topic/register/PC",  Register.pc(CvmRegisters.getPC()));
+        messagingTemplate.convertAndSend("/topic/register/SP",  Register.sp(CvmRegisters.getSP()));
+        messagingTemplate.convertAndSend("/topic/register/A",   Register.a(CvmRegisters.getA()));
+        messagingTemplate.convertAndSend("/topic/register/X",   Register.x(CvmRegisters.getX()));
+        messagingTemplate.convertAndSend("/topic/register/RH",  Register.rh(CvmRegisters.getRH()));
+        messagingTemplate.convertAndSend("/topic/register/RL",  Register.rl(CvmRegisters.getRL()));
+        messagingTemplate.convertAndSend("/topic/register/R",   Register.r(CvmRegisters.getR()));
     }
-
-    // === A ===
-    @MessageMapping("/request/A")
-    @SendTo("/topic/register/A")
-    public Register handleRegisterUpdateA() {
-        return Register.a(CvmRegisters.getA());
-    }
-
-    // === X ===
-    @MessageMapping("/request/X")
-    @SendTo("/topic/register/X")
-    public Register handleRegisterUpdateX() {
-        return Register.x(CvmRegisters.getX());
-    }
-
-    // === RH ===
-    @MessageMapping("/request/RH")
-    @SendTo("/topic/register/RH")
-    public Register handleRegisterUpdateRH() {
-        return Register.rh(CvmRegisters.getRH());
-    }
-
-    // === RL ===
-    @MessageMapping("/request/RL")
-    @SendTo("/topic/register/RL")
-    public Register handleRegisterUpdateRL() {
-        return Register.rl(CvmRegisters.getRL());
-    }
-
-    // === R (float) — отдельно, потому что значение float ===
-    @MessageMapping("/request/R")
-    @SendTo("/topic/register/R")
-    public Register handleRegisterUpdateR() {
-        return Register.r(CvmRegisters.getR());
-    }
-//    client.publish({ destination: '/app/request/PC' });
+//    useEffect(() => {
+//        if (!client.current) return;
 //
-//// Подписаться только на изменения PC
-//    client.subscribe('/topic/register/PC', (msg) => {
-//    const data = JSON.parse(msg.body);
-//        setPc(data.newValue);
-//        setCpuPanel(data.cpu);
+//    const subscriptions = [
+//        '/topic/register/PC',
+//                '/topic/register/SP',
+//                '/topic/register/A',
+//                '/topic/register/X',
+//                '/topic/register/RH',
+//                '/topic/register/RL',
+//                '/topic/register/R'
+//    ];
+//
+//        subscriptions.forEach(topic => {
+//                client.current.subscribe(topic, (message) => {
+//            const data = JSON.parse(message.body);
+//        setRegisters(prev => ({
+//                ...prev,
+//                [data.register.toLowerCase()]: data.newValue
+//            }));
+//        setCpuPanel(data.cpu);  // ← лампочки обновляются автоматически!
+//        });
 //    });
-
+//
+//        return () => {
+//                subscriptions.forEach(topic => client.current?.unsubscribe(topic));
+//    };
+//    }, []);
 
 }
 
