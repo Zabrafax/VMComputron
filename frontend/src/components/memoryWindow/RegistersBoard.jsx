@@ -1,7 +1,8 @@
 import styles from "./RegistersBoard.module.css";
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
+import {useServerContext} from "../../contexts/ServerContext.jsx";
 
-function RegistersBoard({ className, setRegisters, type }) {
+function RegistersBoard({ className, register, type }) {
   const registerPresets = {
     cpu: [
       'green','orange','orange','orange',
@@ -27,41 +28,63 @@ function RegistersBoard({ className, setRegisters, type }) {
   };
 
   const values = [
-    32_768,16_384,8_192,4_096,
-    2_048,1_024,512,
-    256,128,64,
-    32,16,8,
+    100000,40000,20000,10000,
+    4000,2000,1000,
+    400,200,100,
+    40,20,10,
     4, 2, 1
   ]
 
-  const registers = registerPresets[type];
+  const [value, setValue] = useState(0);
+  const [bulbs, setBulbs] = useState([]);
+  const {registers, updateRegister} = useServerContext();
 
-  const [activeRegisters, setActiveRegisters] = useState([0, 1, 2, 3, 10, 11, 12]);
-  const value = useMemo(() => {
-    return activeRegisters.reduce(
-      (sum, idx) => sum + values[idx],
-      0
-    );
-  }, [activeRegisters]);
+  useEffect(() => {
+    const currentRegister = registers[register];
+    if (!!currentRegister) {
+      console.log("newValue: " + currentRegister[0]);
+      setValue(currentRegister[0]);
+      console.log("new bulbs: " + currentRegister[1]);
+      setBulbs(currentRegister[1]);
+    }
+  }, [registers, register]);
 
-  function handleActivatingRegister(number) {
-    setActiveRegisters(prev =>
-      prev.includes(number)
-        ? prev.filter(i => i !== number)
-        : [...prev, number]
-    );
+  const currentRegisters = registerPresets[type];
+
+  // const [activeRegisters, setActiveRegisters] = useState([]);
+  // const value = useMemo(() => {
+  //   return activeRegisters.reduce(
+  //     (sum, idx) => sum + values[idx],
+  //     0
+  //   );
+  // }, [activeRegisters]);
+
+  function handleActivatingRegister(buttonIndex) {
+    const newBulbs = [...bulbs];
+
+    newBulbs[buttonIndex] = newBulbs[buttonIndex] === 1 ? 0 : 1;
+
+    const newValue = newBulbs.reduce((sum, bit, i) => sum + (bit ? values[i] : 0), 0);
+
+    updateRegister(register, newValue);
+
+    // setActiveRegisters(prev =>
+    //   prev.includes(number)
+    //     ? prev.filter(i => i !== number)
+    //     : [...prev, number]
+    // );
   }
 
   return (
     <div className={`${styles.RegistersBoard} ${className || ''}`}>
       <div className={styles.Registers__wrapper}>
-        {registers.map((color, index) => (
+        {currentRegisters.map((color, index) => (
           <button
             key={index}
             className={`
               ${styles.Register}
               ${colorToClass[color]}
-              ${activeRegisters.includes(index) ? styles.Active : ''}
+              ${bulbs[index] === 1 ? styles.Active : ''}
             `}
             onClick={() => handleActivatingRegister(index)}
           >
