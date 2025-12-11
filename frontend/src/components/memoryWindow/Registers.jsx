@@ -59,8 +59,8 @@ function Registers({ className }) {
         </div>
       </div>
 
-      <RegistersBoard className={styles.Registers__board} type={'cpu'} />
-      <RegistersBoard className={styles.Registers__board} type={'memory'} />
+      <RegistersBoard className={styles.Registers__board} register={selectedRegister} type={'cpu'} />
+      <RegistersBoard className={styles.Registers__board} register={selectedRegister} type={'memory'} />
     </div>
   );
 }
