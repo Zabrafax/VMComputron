@@ -6,7 +6,7 @@ public class Register {
     private final int newValue;
     private final int[] cpu;
 
-    private static final int[] CPU_BIT_VALUES = {
+    static final int[] CPU_BIT_VALUES = {
             100000, 40000, 20000, 10000, 4000, 2000, 1000,
             400, 200, 100, 40, 20, 10, 4, 2, 1
     };
