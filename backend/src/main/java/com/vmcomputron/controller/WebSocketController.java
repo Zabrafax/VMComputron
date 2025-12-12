@@ -65,6 +65,12 @@ public class WebSocketController { // websocket
         messagingTemplate.convertAndSend("/topic/memory", Register.m(CvmRegisters.getM(CvmRegisters.getPC())));
     }
 
+    @MessageMapping("/memoryUpdated")
+    @SendTo("/topic/memory")
+    public Register handleRegisterUpdate() {
+        return Register.m(CvmRegisters.getM(CvmRegisters.getPC()));
+    }
+
     //    client.publish({
 //        destination: '/app/registerUpdated',
 //                body: JSON.stringify(42),                    // ← значение
