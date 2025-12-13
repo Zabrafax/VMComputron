@@ -1,5 +1,5 @@
 import styles from "./RegistersBoard.module.css";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import {useServerContext} from "../../contexts/ServerContext.jsx";
 
 function RegistersBoard({ className, register, type }) {
@@ -37,27 +37,17 @@ function RegistersBoard({ className, register, type }) {
 
   const [value, setValue] = useState(0);
   const [bulbs, setBulbs] = useState([]);
-  const {registers, updateRegister} = useServerContext();
+  const {registers, updateRegister, updateMemory} = useServerContext();
 
   useEffect(() => {
     const currentRegister = registers[register];
     if (!!currentRegister) {
-      console.log("newValue: " + currentRegister[0]);
       setValue(currentRegister[0]);
-      console.log("new bulbs: " + currentRegister[1]);
       setBulbs(currentRegister[1]);
     }
   }, [registers, register]);
 
   const currentRegisters = registerPresets[type];
-
-  // const [activeRegisters, setActiveRegisters] = useState([]);
-  // const value = useMemo(() => {
-  //   return activeRegisters.reduce(
-  //     (sum, idx) => sum + values[idx],
-  //     0
-  //   );
-  // }, [activeRegisters]);
 
   function handleActivatingRegister(buttonIndex) {
     const newBulbs = [...bulbs];
@@ -66,42 +56,40 @@ function RegistersBoard({ className, register, type }) {
 
     const newValue = newBulbs.reduce((sum, bit, i) => sum + (bit ? values[i] : 0), 0);
 
-    updateRegister(register, newValue);
-
-    // setActiveRegisters(prev =>
-    //   prev.includes(number)
-    //     ? prev.filter(i => i !== number)
-    //     : [...prev, number]
-    // );
+    if (register !== 'MEM') {
+      updateRegister(register, newValue);
+    } else {
+      updateMemory(newValue);
+    }
   }
 
   return (
-    <div className={`${styles.RegistersBoard} ${className || ''}`}>
-      <div className={styles.Registers__wrapper}>
-        {currentRegisters.map((color, index) => (
-          <button
-            key={index}
-            className={`
+      <div className={`${styles.RegistersBoard} ${className || ''}`}>
+        <div className={styles.Registers__wrapper}>
+          {currentRegisters.map((color, index) => (
+              <button
+                  key={index}
+                  className={`
               ${styles.Register}
               ${colorToClass[color]}
               ${bulbs[index] === 1 ? styles.Active : ''}
             `}
-            onClick={() => handleActivatingRegister(index)}
-          >
+                  onClick={() => handleActivatingRegister(index)}
+              >
 
-          </button>
-        ))}
-      </div>
+              </button>
+          ))}
+        </div>
 
-      <div className={styles.Counter}>
-        <div className={styles.Counter__title__wrapper}>
-          <p className={styles.Counter__title}>{type === 'cpu' ? 'CPU' : 'Memory'}</p>
-        </div>
-        <div className={styles.Counter__window}>
-          <p className={styles.Counter__number}>{value}</p>
+        <div className={styles.Counter}>
+          <div className={styles.Counter__title__wrapper}>
+            <p className={styles.Counter__title}>{type === 'cpu' ? 'CPU' : 'Memory'}</p>
+          </div>
+          <div className={styles.Counter__window}>
+            <p className={styles.Counter__number}>{value}</p>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 

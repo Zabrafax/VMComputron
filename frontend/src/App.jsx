@@ -29,33 +29,33 @@ function App() {
   ];
 
   return (
-    <div className={styles.App__wrapper}>
-      <Header/>
-      <div>
-        <h2>WebSocket чат</h2>
-        <ul>
-          {messages.map((msg, i) => <li key={i}>{msg}</li>)}
-        </ul>
-        <input value={input} onChange={(e) => setInput(e.target.value)}/>
-        <button onClick={sendMessage}>Отправить</button>
-      </div>
-      <div className={styles.Main__content__wrapper}>
-        <div className={styles.Left__content__wrapper}>
-          <div className={styles.Code__wrapper}>
-            <div className={styles.Code__display__wrapper}>
-              <Editor setEditorFilter={setEditorFilter}/>
+      <div className={styles.App__wrapper}>
+        <Header/>
+        {/*<div>*/}
+        {/*  <h2>WebSocket чат</h2>*/}
+        {/*  <ul>*/}
+        {/*    {messages.map((msg, i) => <li key={i}>{msg}</li>)}*/}
+        {/*  </ul>*/}
+        {/*  <input value={input} onChange={(e) => setInput(e.target.value)}/>*/}
+        {/*  <button onClick={sendMessage}>Отправить</button>*/}
+        {/*</div>*/}
+        <div className={styles.Main__content__wrapper}>
+          <div className={styles.Left__content__wrapper}>
+            <div className={styles.Code__wrapper}>
+              <div className={styles.Code__display__wrapper}>
+                <Editor setEditorFilter={setEditorFilter}/>
+              </div>
+              <InstructionsWindow editorFilter={editorFilter}/>
             </div>
-            <InstructionsWindow editorFilter={editorFilter}/>
+            <div className={styles.Console__wrapper}>
+              <ConsoleWindow msgs={messages1}/>
+            </div>
           </div>
-          <div className={styles.Console__wrapper}>
-            <ConsoleWindow msgs={messages1}/>
+          <div className={styles.Memory__wrapper}>
+            <MemoryWindow/>
           </div>
-        </div>
-        <div className={styles.Memory__wrapper}>
-          <MemoryWindow/>
         </div>
       </div>
-    </div>
   )
 }
 
