@@ -48,7 +48,7 @@ public class EndpointController {
             // Поскольку 123456 = 0x01E240, байты: 01 E2 40 (big-endian)
             byte b0 = (byte) ((value >> 16) & 0xFF);  // 01
             byte b1 = (byte) ((value >> 8) & 0xFF);   // E2
-            byte b2 = (byte) (value & 0xFF);          // 40
+            byte b2 = (byte) ((value >> 0) & 0xFF);   // E2
 
 
             grid[row][0] = String.format("%02X", b0 & 0xFF);
@@ -75,6 +75,7 @@ public class EndpointController {
         result.put("part2", part2);
         result.put("part3", part3);
         result.put("part4", part4);
+
 
         return result;
     }

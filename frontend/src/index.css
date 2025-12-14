@@ -79,7 +79,6 @@
   --table-semi-light-color-second: #cccccc;
   --table-header-color: #1a1a1a;
 
-
   /* Colors variables */
   --color--default-tertiary: #D9D9D9;
   --color--default-default: #FFFFFF;
@@ -114,12 +113,12 @@
   --color--background-blue-register: #232046;
   --color--border-blue-register: #6A5CFF;
 
-  --color--light-green: #3ae791;
+  --color--light-green: #20814f;
 
   --table-semi-light-color: #494949;
   --table-semi-light-color-second: #2f2f2f;
   --table-header-color: #2f2f2f;
-
+  
   /* Base system colors */
   --color--default-tertiary: #1F1F1F;
   --color--default-default: #121212;
