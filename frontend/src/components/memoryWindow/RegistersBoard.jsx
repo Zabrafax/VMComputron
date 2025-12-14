@@ -1,5 +1,5 @@
 import styles from "./RegistersBoard.module.css";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import {useServerContext} from "../../contexts/ServerContext.jsx";
 
 function RegistersBoard({ className, register, type }) {
@@ -27,37 +27,35 @@ function RegistersBoard({ className, register, type }) {
     blue: styles.Blue
   };
 
+  // const values = [
+  //   100000,40000,20000,10000,
+  //   4000,2000,1000,
+  //   400,200,100,
+  //   40,20,10,
+  //   4, 2, 1
+  // ]
+
   const values = [
-    100000,40000,20000,10000,
-    4000,2000,1000,
-    400,200,100,
-    40,20,10,
+    32768,16384,8192,4096,
+    2048,1024,512,
+    256,128,64,
+    32,16,8,
     4, 2, 1
   ]
 
   const [value, setValue] = useState(0);
   const [bulbs, setBulbs] = useState([]);
-  const {registers, updateRegister} = useServerContext();
+  const {registers, updateRegister, updateMemory} = useServerContext();
 
   useEffect(() => {
     const currentRegister = registers[register];
     if (!!currentRegister) {
-      console.log("newValue: " + currentRegister[0]);
       setValue(currentRegister[0]);
-      console.log("new bulbs: " + currentRegister[1]);
       setBulbs(currentRegister[1]);
     }
   }, [registers, register]);
 
   const currentRegisters = registerPresets[type];
-
-  // const [activeRegisters, setActiveRegisters] = useState([]);
-  // const value = useMemo(() => {
-  //   return activeRegisters.reduce(
-  //     (sum, idx) => sum + values[idx],
-  //     0
-  //   );
-  // }, [activeRegisters]);
 
   function handleActivatingRegister(buttonIndex) {
     const newBulbs = [...bulbs];
@@ -66,13 +64,11 @@ function RegistersBoard({ className, register, type }) {
 
     const newValue = newBulbs.reduce((sum, bit, i) => sum + (bit ? values[i] : 0), 0);
 
-    updateRegister(register, newValue);
-
-    // setActiveRegisters(prev =>
-    //   prev.includes(number)
-    //     ? prev.filter(i => i !== number)
-    //     : [...prev, number]
-    // );
+    if (register !== 'MEM') {
+      updateRegister(register, newValue);
+    } else {
+      updateMemory(newValue);
+    }
   }
 
   return (
