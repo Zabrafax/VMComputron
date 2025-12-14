@@ -19,17 +19,6 @@ function App() {
   const [showHint, setShowHint] = useState(true);
   const {messages, input, setInput, sendMessage} = useServerContext();
 
-  const messages1 = [
-    "Program started.",
-    "Loading modules...",
-    "Modules loaded successfully.",
-    "Executing main function...",
-    "Error: Unable to fetch data from server.",
-    "Retrying connection...",
-    "Connection established.",
-    "Program terminated."
-  ];
-
   return (
     <div className={styles.App__wrapper}>
       <Header/>
@@ -53,7 +42,7 @@ function App() {
             <InstructionsWindow editorFilter={editorFilter}/>
           </div>
           <div className={styles.Console__wrapper}>
-            <ConsoleWindow msgs={messages1}/>
+            <ConsoleWindow/>
           </div>
         </div>
         <div className={styles.Memory__wrapper}>

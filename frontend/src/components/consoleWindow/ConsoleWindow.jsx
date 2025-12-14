@@ -4,18 +4,15 @@ import styles from './Console.module.css';
 import Trash from './icons/Trash.jsx';
 import Chevron from './icons/Chevron.jsx';
 import SimpleBar from 'simplebar-react';
+import { useServerContext } from '../../contexts/ServerContext.jsx';
 
-function ConsoleWindow({msgs=[]}) {
+function ConsoleWindow() {
     const [collapsed, setCollapsed] = useState(false);
-    const [messages, setMessages] = useState(msgs);
+    const {consoleLines, clearConsole} = useServerContext();
 
     const toggleCollapsed = () => {
         setCollapsed(prev => !prev);
     };
-
-    const clearMessages = () => {
-        setMessages([]);
-    }
 
     return (
         <div className={styles.ConsoleWindow}>
@@ -29,7 +26,7 @@ function ConsoleWindow({msgs=[]}) {
                     onClick={toggleCollapsed}
                 />
                 <h2 className={styles.Window__title} onClick={toggleCollapsed}>Console</h2>
-                <ConsoleButton enabled={messages.length} onClick={clearMessages} icon={<Trash/>} />
+                <ConsoleButton enabled={consoleLines.length} onClick={clearConsole} icon={<Trash/>} />
             </div>
             <div 
                 className={`${styles.Content} ${
@@ -41,9 +38,9 @@ function ConsoleWindow({msgs=[]}) {
                     autoHide={false}
                     scrollbarMaxSize={80}
                 >
-                    {messages.map((msg, index) => (
+                    {consoleLines.map((line, index) => (
                         <p key={index}>
-                            {msg}
+                            {line}
                         </p>
                     ))}
                 </SimpleBar>

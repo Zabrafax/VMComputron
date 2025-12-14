@@ -9,6 +9,8 @@ export function ServerContextProvider({ children }) {
   const [input, setInput] = useState('');
   const client = useRef(null);
 
+  const [consoleLines, setConsoleLines] = useState([]);
+
   const [PC, setPC] = useState([0, []]);
   const [SP, setSP] = useState([0, []]);
   const [A, setA] = useState([0, []]);
@@ -67,10 +69,19 @@ export function ServerContextProvider({ children }) {
 
         client.current.subscribe('/topic/memory', (msg) => {
           const data = JSON.parse(msg.body);
+          console.log(data)
           setMemory([data.newValue, data.cpu]);
 
           fetchMemory();
         });
+
+        client.current.subscribe('/topic/console', (msg) => {
+          const data = JSON.parse(msg.body);
+          console.log(data)
+          setConsoleLines([...consoleLines, data.text])
+        });        
+        testConsole();
+
       },
       onStompError: (frame) => {
         console.log("dwdw");
@@ -84,6 +95,24 @@ export function ServerContextProvider({ children }) {
       client.current.deactivate();
     };
   }, []);
+
+
+  function testConsole() {
+    if (client.current && client.current.connected) {
+      client.current.publish({
+        destination: '/app/console/test',
+      });
+    }
+  }
+
+  function clearConsole() {
+    if (client.current && client.current.connected) {
+      client.current.publish({
+        destination: '/app/console/clear',
+      });
+    }
+  }
+
 
   function storeToMemory(register) {
     if (client.current && client.current.connected) {
@@ -149,12 +178,16 @@ export function ServerContextProvider({ children }) {
     setRam(data);
   }
 
+
   return (
     <ServerContext.Provider value={{
       messages,
       input,
       setInput,
       sendMessage,
+
+      consoleLines,
+      clearConsole,
 
       registers: {PC: PC, SP: SP, A: A, X: X, RH: RH, RL: RL, MEM: memory},
       updateRegister,
