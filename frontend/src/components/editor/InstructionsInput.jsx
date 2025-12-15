@@ -6,6 +6,8 @@ import {useRef, useState} from 'react';
 const InstructionsInput = ({ activeTab, onChange }) => {
     if (!activeTab) return null;
 
+    const lines = activeTab.content ? activeTab.content.split('\n') : [''];
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const textareaRef = useRef(null);
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -81,6 +83,13 @@ const InstructionsInput = ({ activeTab, onChange }) => {
 
     return (
         <div className={styles.InstructionsContainer} style={{ position: "relative" }}>
+            <div className={styles.LineNumbers}>
+                {lines.map((_, idx) => (
+                    <div key={idx} className={styles.LineNumber}>
+                        {idx + 1}
+                    </div>
+                ))}
+            </div>
             <textarea
                 ref={textareaRef}
                 className={styles.InstructionsMainArea}
