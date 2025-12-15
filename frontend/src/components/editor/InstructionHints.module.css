@@ -1,0 +1,33 @@
+.popup {
+    position: absolute;
+    background: var(--color--background-table-header);
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 4px;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.item {
+    padding: 4px 8px;
+    cursor: pointer;
+    display: flex;
+    gap: 8px;
+}
+
+.item:hover {
+    background: var(--color--default-secondary);
+    border-radius: 6px;
+}
+
+.instr {
+    color: var(--color--secondary-text);
+}
+
+.code {
+    color: var(--color--brand-on-brand);
+}
+
+.attr {
+    color: var(--color--light-blue);
+}
