@@ -5,6 +5,14 @@ In a **limited timeframe**, we redesigned the user interface of **ComputronVM**,
 Originally a **desktop Java (.jar) application**, it was transformed into a **web-based application**.  
 The project focused on **frontend and UI/UX redesign** with **significant backend extensions** to support web functionality.
 
+Preview:
+![Preview](assets/ComputronVM.gif)
+
+## Previous Version
+Before our redesign, **ComputronVM** was a simple desktop application in `.jar` format.  
+The interface was **basic and intended for PC use only**, with minimal visual guidance for students and limited interactivity.
+
+![Previous Version Screenshot](assets/ComputronVMOld.jpg)
 
 ## My Contribution
 
