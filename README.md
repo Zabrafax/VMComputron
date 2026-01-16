@@ -6,7 +6,7 @@ Originally a **desktop Java (.jar) application**, it was transformed into a **we
 The project focused on **frontend and UI/UX redesign** with **significant backend extensions** to support web functionality.
 
 Preview:
-![Preview](assets/ComputronVM.gif)
+![Preview](assets/ComputronVMGif.gif)
 
 ## Previous Version
 Before our redesign, **ComputronVM** was a simple desktop application in `.jar` format.  
