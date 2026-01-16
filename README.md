@@ -64,3 +64,19 @@ cd ../backend
 
 > ⚠ Make sure the frontend port is allowed in CORS configuration if needed.
 
+
+
+## Technologies Used
+
+* ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
+  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
+  ![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)
+* ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?logo=spring&logoColor=white)
+  ![Java](https://img.shields.io/badge/Java-007396?style=flat&logo=openjdk&logoColor=white)
+  ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?logo=Apache%20Maven&logoColor=white)
+* ![WebSocket](https://img.shields.io/badge/WebSocket-008080?logo=websocket&logoColor=white)
+  ![REST API](https://img.shields.io/badge/REST_API-61DAFB?logo=rest&logoColor=white)
+
+
